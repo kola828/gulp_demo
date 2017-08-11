@@ -4,7 +4,11 @@ var vm = new Vue({
   data: {
     username: '',
     age: '',
-    dataList:[],
+    sex:'男',
+    department:'技术部',
+    departmentList:['技术部','后勤部','运营部','其他'],
+    like:[],
+    dataList: [],
   },
   mounted: function () {
 
@@ -18,10 +22,16 @@ var vm = new Vue({
       if (this.username !== '' && this.age !== '') {
         this.dataList.push({
           name: this.username,
-          age: this.age
+          age: this.age,
+          sex: this.sex ,
+          department:this.department,
+          like:this.like,
         });
         this.username = '';
         this.age = '';
+        this.sex ='';
+        this.department='技术部';
+        this.like=[]
       }
     },
     /**
@@ -31,6 +41,10 @@ var vm = new Vue({
     reset: function () {
       this.username = '';
       this.age = '';
+      this.sex ='';
+      this.department='技术部';
+      this.like=[]
+
     },
     /**
      * description 删除信息

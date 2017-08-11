@@ -7,7 +7,7 @@
   <meta name="description" content="demo"/>
   <meta name="format-detection" content="telephone=no"/>
   <meta name="format-detection" content="email=no"/>
-  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <!--<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>-->
   <link rel="stylesheet" href="./public/css/common.css">
   <link rel="stylesheet" href="./public/css/index1.css">
 </head>
@@ -23,6 +23,28 @@
       <label for="age">年 龄：</label>
       <input id="age" v-model="age" placeholder="输入年龄" class="form-control" type="text">
     </div>
+    <div class="form-group">
+      <label for="age">性 别：</label>
+      <div class="input-group">
+        <input type="radio" name="sex" value="男" v-model="sex" >男
+        <input type="radio" name="sex" value="女" v-model="sex">女
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label>部门：</label>
+      <select v-model="department">
+        <option v-for="key in departmentList">{{key}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>爱好：</label>
+      <div class="input-group">
+      <input type="checkbox" value="篮球" v-model="like"/>篮球
+      <input type="checkbox" value="足球" v-model="like"/>足球
+      <input type="checkbox" value=乒乓球 v-model="like"/>乒乓球
+      </div>
+    </div>
     <div class="form-group btn-group">
       <input type="button" value="添加" class="btn btn-primary" @click="add()">
       <input type="reset" value="重置" class="btn btn-danger" @click="reset()">
@@ -37,6 +59,9 @@
       <th>序号</th>
       <th>名字</th>
       <th>年龄</th>
+      <th>性别</th>
+      <th>部门</th>
+      <th>爱好</th>
       <th>操作</th>
     </tr>
     </thead>
@@ -45,17 +70,20 @@
       <td>{{index+1}}</td>
       <td>{{item.name}}</td>
       <td>{{item.age}}</td>
+      <td>{{item.sex}}</td>
+      <td>{{item.department}}</td>
+      <td><span v-for="key in item.like">{{key}}，</span></td>
       <td><input class="btn" type="button" value="删除"
                  @click="del(index)"></td>
     </tr>
     <tr class="text-right" v-if="myData.length != 0">
-      <td colspan="4">
+      <td colspan="7">
         <button class="btn btn-sm" @click="del(-1)">删除全部
         </button>
       </td>
     </tr>
     <tr v-else>
-      <td colspan="4" class="text-center last">
+      <td colspan="7" class="text-center last">
         <p>暂无数据...</p>
       </td>
     </tr>
